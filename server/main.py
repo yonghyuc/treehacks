@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request, render_template
-import csv
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -7,8 +6,11 @@ CORS(app)
 
 @app.route('/')
 def hello():
-    output = {'abc': 100}
-    return jsonify(output)
+    return render_template('welcome.html')
+
+@app.route('/recv')
+def receiver():
+    return render_template('receiver/receiver.html')
 
 @app.route('/demos')
 def demos():

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 300px;
+            width: 90%;
+            margin: auto;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .location_data .message{
+            margin-top: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .address {
+            margin-top: 5px;
+            text-align: center;
+        }
+        .time {
+            margin-top: 5px;
+            text-align: center;
+        }
+        .response{
+            width: 90%;
+            margin: auto;
+            margin-top: 30px;
+        }
+        .send_txt{
+            margin-top: 5px;
+            text-align: center;
+        }
+        .call{
+            margin-top: 5px;
+            text-align: center;
+        }
+        .call.txt {
+            margin-top: 40px;
+        }
+        .send_txt.btn {
+            background-color: lightgreen;
+        }
+        .message.btn span {
+            line-height: 45px;
+            font-weight: bold;
+        }
+        .call.btn {
+            background-color: darkred;
+            color: white;
+            height: 45px;
+        }
+        .call.btn span {
+            line-height: 45px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="map" id="map"></div>
+<div class="location_data">
+    <div class="message"><span>"Mike" is at this area.</span></div>
+    <div class="address"><span>2901-2913 Budlong Ave Los Angeles, CA 90007</span></div>
+    <div class="time"><span>19:00 24th Feb, 2019</span></div>
+</div>
+
+<div class="response">
+    <div class="send_txt txt"><span>Do you want to send a message</span></div>
+    <div class="send_txt btn"><span>Are you OK?</span></div>
+    <div class="call txt"><span>Do you want to </span></div>
+    <div class="call btn"><span>CALL 911?</span></div>
+</div>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX7fa9BRbq56Ya3eU_z22lz4PBZHKvjP0&callback=initMap&language=en"
+        async defer></script>
+</body>
+</html>
