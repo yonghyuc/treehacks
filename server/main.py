@@ -16,7 +16,7 @@ def receiver():
 def demos():
     return render_template('demos.html')
 
-@app.route('/are-you-okay')
+@app.route('/status')
 def are_you_okay():
     return render_template('are-you-okay.html')
 
