@@ -5,7 +5,7 @@ from twilio.rest import Client
 app = Flask(__name__)
 CORS(app)
 
-GOOGLE_MAP_API_KEY = "AIzaSyAX7fa9BRbq56Ya3eU_z22lz4PBZHKvjP0"
+GOOGLE_MAP_API_KEY = "AIzaSyD3BRUfTSDs3AameaOGQ6oejQOZ32svP-c"
 
 @app.route('/')
 def hello():
