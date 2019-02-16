@@ -8,6 +8,10 @@ CORS(app)
 def hello():
     return render_template('welcome.html')
 
+@app.route('/recv')
+def receiver():
+    return render_template('receiver/receiver.html')
+
 @app.errorhandler(500)
 def server_error(e):
     return """
