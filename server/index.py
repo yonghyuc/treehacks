@@ -7,7 +7,6 @@ CORS(app)
 
 @app.route('/')
 def hello():
-    # Reads data.csv and renders it
     output = {'abc': 100}
     return jsonify(output)
     
