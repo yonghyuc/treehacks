@@ -8,15 +8,8 @@ CORS(app)
 @app.route('/')
 def hello():
     # Reads data.csv and renders it
-    with open('../data.csv', 'r') as f:
-        reader = csv.reader(f)
-        headings = next(reader)
-        output = []
-        for row in reader:
-            item = {heading: value_str for heading, value_str in zip(headings, row)}
-            output.append(item)
-        return jsonify(output)
-    return jsonify({})
+    output = {'abc': 100}
+    return jsonify(output)
     
 @app.errorhandler(500)
 def server_error(e):
