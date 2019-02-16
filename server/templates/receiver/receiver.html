@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Map</title>
+    <title>MapPal</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -11,9 +11,19 @@
             margin: auto;
         }
         html, body {
-            height: 100%;
             margin: 0;
             padding: 0;
+        }
+        .top{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .top span{
+            line-height: 45px;
+            font-weight: bold;
+        }
+        .bottom {
+            margin-top: 15px;
         }
         .location_data .message{
             margin-top: 5px;
@@ -37,51 +47,68 @@
             margin-top: 5px;
             text-align: center;
         }
-        .call{
+        .emergency{
             margin-top: 5px;
             text-align: center;
         }
-        .call.txt {
-            margin-top: 40px;
+        .emergency.txt {
+            margin-top: 20px;
+        }
+        .btn {
+            border-radius: 10px;
         }
         .send_txt.btn {
             background-color: lightgreen;
+            font-size: 30px;
         }
-        .message.btn span {
+        .send_txt.btn span {
             line-height: 45px;
             font-weight: bold;
         }
-        .call.btn {
+        .emergency.btn {
             background-color: darkred;
             color: white;
-            height: 45px;
+            font-size: 30px;
         }
-        .call.btn span {
+        .emergency.btn span {
             line-height: 45px;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
-<div class="map" id="map"></div>
-<div class="location_data">
-    <div class="message"><span>"Mike" is at this area.</span></div>
-    <div class="address"><span>2901-2913 Budlong Ave Los Angeles, CA 90007</span></div>
-    <div class="time"><span>19:00 24th Feb, 2019</span></div>
+<div class="top">
+    <spna>MapPal</spna>
 </div>
-
-<div class="response">
-    <div class="send_txt txt"><span>Do you want to send a message</span></div>
-    <div class="send_txt btn"><span>Are you OK?</span></div>
-    <div class="call txt"><span>Do you want to </span></div>
-    <div class="call btn"><span>CALL 911?</span></div>
+<div class="bottom">
+    <div class="map" id="map"></div>
+    <div class="location_data">
+        <div class="message"><span>"Mike" is at this area.</span></div>
+        <div class="address"><span>2901-2913 Budlong Ave Los Angeles, CA 90007</span></div>
+        <div class="time"><span>19:00 24th Feb, 2019</span></div>
+    </div>
+    <div class="response">
+        <div class="send_txt txt"><span>Do you want to send a message</span></div>
+        <div class="send_txt btn first"><span>Are you OK?</span></div>
+        <div class="emergency txt"><span>Do you want to </span></div>
+        <div class="emergency btn"><span>CALL 911?</span></div>
+    </div>
 </div>
 <script>
-    var map;
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+        // The location of Uluru
+        var uluru = {lat: -25.344, lng: 131.036};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 7, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+
+        map.data.setStyle(function(feature) {
+            var magnitude = feature.getProperty('mag');
+            return {
+                icon: getCircle(magnitude)
+            };
         });
     }
 </script>
