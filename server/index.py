@@ -12,6 +12,14 @@ def hello():
 def receiver():
     return render_template('receiver/receiver.html')
 
+@app.route('/demos')
+def demos():
+    return render_template('demos.html')
+
+@app.route('/are-you-okay')
+def are_you_okay():
+    return render_template('are-you-okay.html')
+
 @app.errorhandler(500)
 def server_error(e):
     return """
