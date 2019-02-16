@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 flask-cors = "*"
 flask = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.7"
