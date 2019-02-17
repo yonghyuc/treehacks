@@ -1,12 +1,27 @@
 # treehacks
 TreeHacks 2019
 
-## How to run the web server
+## How to run the python backend server
 
 ```
 $ cd server
 $ pip install -r requirements.txt
 $ FLASK_ENV=development FLASK_APP=index.py pipenv run flask run
+```
+
+WINDOW
+```
+$ cd server
+$ pip install -r requirements.txt
+$ SET FLASK_ENV=development
+$ SET FLASK_APP=index.py
+$ pipenv run flask run
+```
+
+## How to run the angular frontend server
+```
+$ cd frontend
+$ ng serve --open
 ```
 
 then open http://localhost:5000/

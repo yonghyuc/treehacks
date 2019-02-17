@@ -8,6 +8,9 @@ CORS(app)
 
 GOOGLE_MAP_API_KEY = "AIzaSyD3BRUfTSDs3AameaOGQ6oejQOZ32svP-c"
 GOOGLE_MAP_API_URL = "https://maps.googleapis.com/maps/api/geocode/json"
+TWILIO_SID = 'AC93d50f665e1e52813b6dabb120b18d1c'
+PHONE_AUTH_1 = '08f9ef50c96d92b79677915be9165c47'
+
 
 @app.route('/')
 def hello():
@@ -60,6 +63,28 @@ def send_help_sms():
     )
     return "success"
 
+@app.route('/status')
+def send_check_status():
+    client = Client(TWILIO_SID, PHONE_AUTH_1)
+
+    client.messages.create(
+        body="Are you ok?\nCould you tell us about your status?\nhttp://35.235.68.155:4200/status",
+        from_='+13233065652',
+        to='+13234960810'
+    )
+    return "success"
+
+@app.route('/receive')
+def send_receiver_msg():
+    client = Client(TWILIO_SID, PHONE_AUTH_1)
+
+    client.messages.create(
+        body="We are worrying about \"Mike\"\'s safety.\n Could you check on him?\nhttp://35.235.68.155:4200/receive",
+        from_='+13233065652',
+        to='+13234960810'
+    )
+    return "success"
+
 @app.route("/security_score")
 def data():
     lat = request.args.get('lat')
@@ -80,7 +105,21 @@ def data():
 
     print(geodata)
 
-    return jsonify({'score': 0.54}), 200, {'ContentType':'application/json'}
+    # CALL ML module
+    # likelihood = ML_module.call(geodata)
+    likelihood = 0.77
+
+    if (likelihood > 0.6):
+        send_check_status()
+
+    if (likelihood > 0.75):
+        send_receiver_msg()
+
+    result = {
+        'score': likelihood
+    }
+
+    return jsonify(result), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
