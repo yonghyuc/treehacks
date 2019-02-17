@@ -33,9 +33,15 @@
   margin: auto;
   margin-top: 30px;
 }
-.send_txt{
+.contact{
   margin-top: 5px;
   text-align: center;
+
+  a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
 .emergency{
   margin-top: 5px;
@@ -47,7 +53,7 @@
 .btn {
   border-radius: 10px;
 }
-.send_txt.btn {
+.contact.btn {
   background-color: lightgreen;
   font-size: 30px;
 
@@ -64,5 +70,14 @@
   span {
     line-height: 45px;
     font-weight: bold;
+  }
+}
+
+.img {
+  display: inline-block;
+  
+  &.worry {
+    width: 10px;
+    height: 10px;
   }
 }

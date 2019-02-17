@@ -14,17 +14,23 @@ export class ReceiverComponent implements AfterViewInit {
 
   @ViewChild('googleMap') gmapElement: any;
 
+  phone_number = "+13234960810"
+
   constructor(private backendSenderService: BackendSenderService) {
   }
 
   ngAfterViewInit() {
     var mapProp = {
       center: new google.maps.LatLng(28.4595, 77.0266),
-      zoom: 14,
-      // mapTypeId: google.maps.MapTypeId.ROADMAP
-      mapTypeId: google.maps.MapTypeId.HYBRID
-      // mapTypeId: google.maps.MapTypeId.SATELLITE
-      // mapTypeId: google.maps.MapTypeId.TERRAIN
+      zoom: 16,
+      minZoom: 13,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     };
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
@@ -35,6 +41,22 @@ export class ReceiverComponent implements AfterViewInit {
       content: "Hey, We are here"
     });
     infowindow.open(this.map, marker);
+
+    this.showDangerousSpot();
+  }
+
+  showDangerousSpot(){
+    var heatmapData = [];
+
+    var latLng = new google.maps.LatLng(28.4595, 77.0266);
+    heatmapData.push(latLng);
+
+    var heatmap = new google.maps.visualization.HeatmapLayer({
+      map: this.map,
+      data: heatmapData,
+      dissipating: false,
+      radius: 0.0003
+    });
   }
 
   sendMsg() {
