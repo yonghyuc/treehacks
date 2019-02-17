@@ -78,9 +78,9 @@ def data():
     geodata['lng'] = result['geometry']['location']['lng']
     geodata['address'] = result['formatted_address']
 
-    print (geodata)
+    print(geodata)
 
-    return jsonify({'success':True}), 200, {'ContentType':'application/json'}
+    return jsonify({'score': 0.54}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
