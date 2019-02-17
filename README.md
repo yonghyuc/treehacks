@@ -6,7 +6,7 @@ TreeHacks 2019
 ```
 $ cd server
 $ pip install -r requirements.txt
-$ FLASK_ENV=development FLASK_APP=index.py pipenv run flask run
+$ FLASK_ENV=development FLASK_APP=main.py flask run
 ```
 
 then open http://localhost:5000/
