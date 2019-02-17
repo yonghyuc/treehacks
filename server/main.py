@@ -144,11 +144,7 @@ def data():
         send_check_status()
         send_receiver_msg()
 
-    result = {
-        'score': likelihood
-    }
-
-    return jsonify({'score': 0.54, 'address': result['formatted_address']}), 200, {'ContentType':'application/json'}
+    return jsonify({'score': 0.54, 'address': geodata['address']}), 200, {'ContentType':'application/json'}
 
 def periodic():
     global timer
