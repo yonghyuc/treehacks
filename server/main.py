@@ -42,7 +42,7 @@ def test_sms():
     client.messages.create(
         body="Hello world?!",
         from_='+13233065652',
-        to='+13234960810'
+        to='+13202887535'
     )
 
     return jsonify({'success':True}), 200, {'ContentType':'application/json'}
@@ -82,7 +82,7 @@ def send_check_status():
     client.messages.create(
         body="Are you ok?\nCould you tell us about your status?\nhttp://35.235.68.155:4200/status",
         from_='+13233065652',
-        to='+13234960810'
+        to='+13202887535'
     )
     return jsonify({'success':True}), 200, {'ContentType':'application/json'}
 
@@ -105,7 +105,7 @@ def send_receiver_msg():
     client.messages.create(
         body="We are worrying about \"Mike\"\'s safety.\n Could you check on him?\nhttp://35.235.68.155:4200/receive",
         from_='+13233065652',
-        to='+13234960810'
+        to='+13202887535'
     )
 
     return jsonify({'success':True}), 200, {'ContentType':'application/json'}

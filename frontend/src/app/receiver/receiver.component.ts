@@ -15,7 +15,7 @@ export class ReceiverComponent implements AfterViewInit {
 
   @ViewChild('googleMap') gmapElement: any;
 
-  phone_number = "+13234960810";
+  phone_number = "+13202887535";
 
   item: any;
 
