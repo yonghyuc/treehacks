@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from twilio.rest import Client
 import requests
+import model
 
 app = Flask(__name__)
 CORS(app)
@@ -80,7 +81,9 @@ def data():
 
     print(geodata)
 
-    return jsonify({'score': 0.54, 'address': result['formatted_address']}), 200, {'ContentType':'application/json'}
+    (score, news) = get_output(geodata['lat'], geodata['lng'])
+
+    return jsonify({'score': score, 'address': result['formatted_address'], headline: news[0]}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
