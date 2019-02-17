@@ -56,11 +56,6 @@ def send_help_sms():
     )
     return "success"
 
-@app.route('/security_score')
-def security_score():
-    output = {"score": 0.6}
-    return jsonify(output)
-
 @app.errorhandler(500)
 def server_error(e):
     return """
