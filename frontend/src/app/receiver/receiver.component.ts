@@ -11,30 +11,63 @@ declare let google: any;
 })
 export class ReceiverComponent implements AfterViewInit {
   map: google.maps.Map;
+  marker: any;
 
   @ViewChild('googleMap') gmapElement: any;
+
+  phone_number = "+13202887535";
+
+  item: any;
 
   constructor(private backendSenderService: BackendSenderService) {
   }
 
   ngAfterViewInit() {
+    this.backendSenderService.get("test").subscribe((item: any) => {
+      this.item = item;
+      this.setMap(item.location);
+    });
+  }
+
+  setMap(location) {
+    let googleLocation = new google.maps.LatLng(location.lat, location.lng);
+
     var mapProp = {
-      center: new google.maps.LatLng(28.4595, 77.0266),
-      zoom: 14,
-      // mapTypeId: google.maps.MapTypeId.ROADMAP
-      mapTypeId: google.maps.MapTypeId.HYBRID
-      // mapTypeId: google.maps.MapTypeId.SATELLITE
-      // mapTypeId: google.maps.MapTypeId.TERRAIN
+      center: googleLocation,
+      zoom: 16,
+      minZoom: 13,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     };
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-    var marker = new google.maps.Marker({ position: mapProp.center });
-    marker.setMap(this.map);
+    this.marker = new google.maps.Marker({ position: mapProp.center });
+    this.marker.setMap(this.map);
 
     var infowindow = new google.maps.InfoWindow({
-      content: "Hey, We are here"
+      content: "Mike is here"
     });
-    infowindow.open(this.map, marker);
+    infowindow.open(this.map, this.marker);
+
+    this.showDangerousSpot(googleLocation);
+  }
+
+  showDangerousSpot(googleLocation){
+    var heatmapData = [];
+
+    heatmapData.push(googleLocation);
+
+    new google.maps.visualization.HeatmapLayer({
+      map: this.map,
+      data: heatmapData,
+      dissipating: false,
+      radius: 0.0003
+    });
   }
 
   sendMsg() {
@@ -42,6 +75,4 @@ export class ReceiverComponent implements AfterViewInit {
       console.log(item);
     });
   }
-
-
 }

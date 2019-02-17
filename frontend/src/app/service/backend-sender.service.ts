@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class BackendSenderService {
 
-  BACKEND_BASE_URL = "http://localhost:5000/";
+  BACKEND_BASE_URL = "https://treehacks-mappal.appspot.com/";
 
   constructor(private http: HttpClient) {
 

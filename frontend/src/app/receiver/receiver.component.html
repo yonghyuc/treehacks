@@ -5,13 +5,19 @@
   <div #googleMap class="map"></div>
   <div class="location_data">
     <div class="message"><span>"Mike" is at this area.</span></div>
-    <div class="address"><span>2901-2913 Budlong Ave Los Angeles, CA 90007</span></div>
-    <div class="time"><span>19:00 24th Feb, 2019</span></div>
+    <div class="address"><span>{{item?.location.address}}</span></div>
+    <div class="time"><span>{{item?.location_time}}</span></div>
   </div>
   <div class="response">
-    <div class="send_txt txt"><span>Do you want to send a message</span></div>
-    <div class="send_txt btn first" (click)="sendMsg()"><span>Are you OK?</span></div>
+    <div class="contact txt"><span>Do you want to call to "Mike"</span></div>
+    <div class="contact btn" (click)="sendMsg()">
+      <a href="tel:{{phone_number}}">Are you OK?</a>
+    </div>
     <div class="emergency txt"><span>Do you want to </span></div>
-    <div class="emergency btn"><span>CALL 911?</span></div>
+    <div class="emergency btn">
+      <a href="javascript:alert('911');">call 911?</a>
+    </div>
   </div>
 </div>
+
+
