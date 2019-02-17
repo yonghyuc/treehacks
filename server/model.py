@@ -12,6 +12,7 @@ from process_data import *
 from geolocation import *
 from nlp_news import *
 
+knn = pickle.load(open("model_0.34307634520580066.sav", "rb"))
 
 class KNN:
     def __init__(self,
@@ -38,7 +39,7 @@ class KNN:
 
 
 def get_output(lat, lon):
-    knn = pickle.load(open("model_0.34307634520580066.sav", "rb"))
+    
     y_hat = knn.predict(np.array([lat, lon]).reshape(1,2))
     city = reverse_geocode_to_county(lat, lon)
     (sentiment, news) = analyze_entities(city)
