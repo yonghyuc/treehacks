@@ -32,6 +32,34 @@ def test_sms():
 
     return "success"
 
+@app.route('/send_okay_sms')
+def send_okay_sms():
+    address = request.args.get('address', '?')
+    account_sid = 'AC93d50f665e1e52813b6dabb120b18d1c'
+    auth_token = '08f9ef50c96d92b79677915be9165c47'
+    client = Client(account_sid, auth_token)
+    # TODO: Angular app should handle the address and the location
+    client.messages.create(
+        body="I am okay. I am at " + address + " http://35.235.68.155:4200/receive",
+        from_='+13233065652',
+        to='+12137099805'
+    )
+    return "success"
+
+@app.route('/send_help_sms')
+def send_help_sms():
+    address = request.args.get('address', '?')
+    account_sid = 'AC93d50f665e1e52813b6dabb120b18d1c'
+    auth_token = '08f9ef50c96d92b79677915be9165c47'
+    client = Client(account_sid, auth_token)
+    # TODO: Angular app should handle the address and the location
+    client.messages.create(
+        body="Help me! I am at " + address + " http://35.235.68.155:4200/receive",
+        from_='+13233065652',
+        to='+12137099805'
+    )
+    return "success"
+
 @app.route("/security_score")
 def data():
     lat = request.args.get('lat')
@@ -50,9 +78,9 @@ def data():
     geodata['lng'] = result['geometry']['location']['lng']
     geodata['address'] = result['formatted_address']
 
-    print (geodata)
+    print(geodata)
 
-    return jsonify({'success':True}), 200, {'ContentType':'application/json'}
+    return jsonify({'score': 0.54}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
