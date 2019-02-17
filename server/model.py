@@ -59,12 +59,12 @@ def get_output(lat, lon):
     final_danger_score = float(final_danger_score)
     return final_danger_score, res
 
-def main():
-    data = CrimeData('./')
+# def main():
+    # data = CrimeData('./')
     # data.process_us_community_data()
-    data.split_data()
+    # data.split_data()
     # knn = KNN(data)
-    knn = pickle.load(open("model_0.37188926024656016.sav", "rb"))
+    # knn = pickle.load(open("model_0.37188926024656016.sav", "rb"))
     # y_hat = knn.predict(data.test_x)
     # mse = np.abs(y_hat - data.test_y)
     # mse = np.mean(mse)
@@ -74,7 +74,7 @@ def main():
     # filename = "model_" + np.str(score) +".sav"
     # pickle.dump(knn, open(filename, "wb"))
 
-    get_output(37.7749, -122.4149)
+    # get_output(37.7749, -122.4149)
 
 
 

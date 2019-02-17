@@ -2,7 +2,11 @@ from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from twilio.rest import Client
 import requests
-import model
+from model import *
+import nltk
+
+
+nltk.download("wordnet")
 
 app = Flask(__name__)
 CORS(app)
