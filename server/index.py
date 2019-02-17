@@ -5,30 +5,17 @@ from twilio.rest import Client
 app = Flask(__name__)
 CORS(app)
 
-GOOGLE_MAP_API_KEY = "AIzaSyD3BRUfTSDs3AameaOGQ6oejQOZ32svP-c"
-
 @app.route('/')
 def hello():
-    return render_template('welcome.html')
+    return "Hello"
 
-@app.route('/recv')
-def receiver():
-    return render_template('receiver.html', google_map_api_key=GOOGLE_MAP_API_KEY)
-
-@app.route('/demos')
-def demos():
-    return render_template('demos.html')
-
-@app.route('/status')
-def are_you_okay():
-    return render_template('are-you-okay.html')
-
-@app.route('/current')
-def current():
-    return render_template('current.html', google_map_api_key=GOOGLE_MAP_API_KEY)
+@app.route('/test')
+def test():
+    output = {'abc': 100}
+    return jsonify(output)
 
 @app.route('/test/sms')
-def test():
+def test_sms():
     account_sid = 'AC93d50f665e1e52813b6dabb120b18d1c'
     auth_token = '08f9ef50c96d92b79677915be9165c47'
     client = Client(account_sid, auth_token)
