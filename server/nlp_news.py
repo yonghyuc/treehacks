@@ -28,7 +28,7 @@ def analyze_entities(city,
                      threshold=-0.3):
     corpus = crime_hist.get_crime_words()
     response = get_news(city)
-    temp =[]
+    temp = None
     in_corpus, sentiment = [], []
     for res in response:
         text = res['description']
@@ -46,7 +46,7 @@ def analyze_entities(city,
         # Detects entities in the document. You can also analyze HTML with:
         #   document.type == enums.Document.Type.HTML
         entities = client.analyze_entities(document).entities
-
+        lowest_sent = 1
         for entity in entities:
             counter = 0
             entity_type = enums.Entity.Type(entity.type)
@@ -54,11 +54,14 @@ def analyze_entities(city,
                 event = str(entity)
                 event = event.split('\"')
                 event = event[-2].lower()
-                if event in corpus and get_sentiment(text)[0] < threshold:
+                if event in corpus:
                     in_corpus.append(1)
-                    sentiment.append(get_sentiment(text))
+                    sent = get_sentiment(text)[0]
+                    sentiment.append(sent)
                     incorpus = True
-                    temp = res
+                    if sent < lowest_sent:
+                        lowest_sent = sent
+                        temp=res
                     break
         if not incorpus:
             in_corpus.append(0)
@@ -142,4 +145,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

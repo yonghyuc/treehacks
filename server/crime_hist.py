@@ -20,7 +20,7 @@ def get_crime_words():
     crime_words = ['shooting', 'attack', 'assault', 'killing', 'murder', 'police', 'panic','death']
     corpus = set()
     for word in crime_words:
-        synm = corpus.get_synm(word)[:lim]
+        synm = get_synm(word)[:lim]
         for s in synm:
             corpus.add(s)
     return corpus

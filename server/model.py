@@ -38,13 +38,13 @@ class KNN:
 
 
 def get_output(lat, lon):
-    knn = pickle.load(open("model_0.37188926024656016.sav", "rb"))
+    knn = pickle.load(open("model_0.34307634520580066.sav", "rb"))
     y_hat = knn.predict(np.array([lat, lon]).reshape(1,2))
     city = reverse_geocode_to_county(lat, lon)
     (sentiment, news) = analyze_entities(city)
     res = []
-    if not news == []:
-        res = (news['title'], news['description'], news['url'])
+    if news:
+        res.append(news['title'])
     bol = [sentiment[i][0] for i in range(len(sentiment))]
     sent = [sentiment[i][1] for i in range(len(sentiment))]
     bol = np.array(bol)
@@ -52,46 +52,10 @@ def get_output(lat, lon):
     perc = np.mean(bol) # percentage of true false
 
     if perc == 0:
-        return y_hat, res
+        return y_hat, []
     avg_score_of_pos = np.mean(np.abs((sent[bol > 0])))
     numerator= 0.8*perc + 0.2*avg_score_of_pos
     final_danger_score = 0.6*numerator + 0.4*y_hat
     final_danger_score = float(final_danger_score)
+    print(final_danger_score, res)
     return final_danger_score, res
-
-# def main():
-    # data = CrimeData('./')
-    # data.process_us_community_data()
-    # data.split_data()
-    # knn = KNN(data)
-    # knn = pickle.load(open("model_0.37188926024656016.sav", "rb"))
-    # y_hat = knn.predict(data.test_x)
-    # mse = np.abs(y_hat - data.test_y)
-    # mse = np.mean(mse)
-    # print(mse)
-    # score = knn.score()
-    # print(score)
-    # filename = "model_" + np.str(score) +".sav"
-    # pickle.dump(knn, open(filename, "wb"))
-
-    # get_output(37.7749, -122.4149)
-
-
-
-if __name__ == '__main__':
-    main()
-
-
-
-
-
-
-
-#
-# query = ("https://data.lacity.org/resource/7fvc-faax.json")
-# raw_data = pd.read_json(query)
-# features = raw_data.columns.values
-#
-# query = ("https://data.lacity.org/resource/7fvc-faax.json")
-# la_data = pd.read_json(query)
-#
