@@ -140,10 +140,6 @@ def data():
     # likelihood = ML_module.call(geodata)
     likelihood = 0.77
 
-    if (likelihood > 0.6):
-        send_check_status()
-        send_receiver_msg()
-
     return jsonify({'score': 0.54, 'address': geodata['address']}), 200, {'ContentType':'application/json'}
 
 def periodic():
