@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+.img {
+  background-size: contain;
+}
+.worry.img {
+  background-image: url("/assets/image/worry.png");
+}
+.emergency.img {
+  background-image: url("/assets/image/emergency.png");
+}
