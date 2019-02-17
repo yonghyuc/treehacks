@@ -80,7 +80,7 @@ def data():
 
     print(geodata)
 
-    return jsonify({'score': 0.54}), 200, {'ContentType':'application/json'}
+    return jsonify({'score': 0.54, 'address': result['formatted_address']}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
