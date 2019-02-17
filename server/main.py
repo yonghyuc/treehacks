@@ -87,7 +87,7 @@ def data():
 
     (score, news) = get_output(geodata['lat'], geodata['lng'])
 
-    return jsonify({'score': score, 'address': result['formatted_address'], headline: news[0]}), 200, {'ContentType':'application/json'}
+    return jsonify({'score': score, 'address': result['formatted_address'], 'headline': news[0]}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
 def server_error(e):
