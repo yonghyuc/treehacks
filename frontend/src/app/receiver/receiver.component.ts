@@ -11,17 +11,27 @@ declare let google: any;
 })
 export class ReceiverComponent implements AfterViewInit {
   map: google.maps.Map;
+  marker: any;
 
   @ViewChild('googleMap') gmapElement: any;
 
-  phone_number = "+13234960810"
+  phone_number = "+13234960810";
+
+  item: any;
 
   constructor(private backendSenderService: BackendSenderService) {
   }
 
   ngAfterViewInit() {
+    this.backendSenderService.get("test").subscribe((item: any) => {
+      this.item = item;
+      this.setMap(item.location);
+    });
+  }
+
+  setMap(location) {
     var mapProp = {
-      center: new google.maps.LatLng(28.4595, 77.0266),
+      center: new google.maps.LatLng(location.lat, location.lng),
       zoom: 16,
       minZoom: 13,
       mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -34,13 +44,13 @@ export class ReceiverComponent implements AfterViewInit {
     };
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-    var marker = new google.maps.Marker({ position: mapProp.center });
-    marker.setMap(this.map);
+    this.marker = new google.maps.Marker({ position: mapProp.center });
+    this.marker.setMap(this.map);
 
     var infowindow = new google.maps.InfoWindow({
-      content: "Hey, We are here"
+      content: "Mike is here"
     });
-    infowindow.open(this.map, marker);
+    infowindow.open(this.map, this.marker);
 
     this.showDangerousSpot();
   }

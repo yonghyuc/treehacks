@@ -5,8 +5,8 @@
   <div #googleMap class="map"></div>
   <div class="location_data">
     <div class="message"><span>"Mike" is at this area.</span></div>
-    <div class="address"><span>2901-2913 Budlong Ave Los Angeles, CA 90007</span></div>
-    <div class="time"><span>19:00 24th Feb, 2019</span></div>
+    <div class="address"><span>{{item?.location.address}}</span></div>
+    <div class="time"><span>{{item?.location_time}}</span></div>
   </div>
   <div class="response">
     <div class="contact txt"><span>Do you want to call to "Mike"</span></div>

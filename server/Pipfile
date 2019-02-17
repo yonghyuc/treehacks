@@ -9,6 +9,7 @@ verify_ssl = true
 twilio = "==6.24.1"
 Flask = "==0.12.2"
 Flask-Cors = "==3.0.3"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.7"
