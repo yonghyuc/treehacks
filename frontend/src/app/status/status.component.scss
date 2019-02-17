@@ -1,0 +1,39 @@
+.info {
+  width: 90%;
+  text-align: center;
+  margin: 15px auto;
+
+  span{
+    line-height: 45px;
+    font-size: 45px;
+  }
+}
+.resp{
+  margin: auto;
+  margin-top: 15px;
+  width: 90%;
+}
+.ok {
+  height: 130px;
+  background-color: lightgreen;
+  text-align: center;
+
+  span{
+    line-height: 130px;
+    font-weight: bold;
+    font-size: 70px;
+  }
+}
+.emergency{
+  height: 130px;
+  margin-top: 40px;
+  background-color: darkred;
+  color: white;
+  text-align: center;
+
+  span {
+    line-height: 130px;
+    font-weight: bold;
+    font-size: 70px;
+  }
+}

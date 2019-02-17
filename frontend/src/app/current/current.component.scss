@@ -1,0 +1,38 @@
+.info{
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+.map {
+  height: 300px;
+  width: 90%;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  width: 100%;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.search{
+  margin: auto;
+  margin-top: 20px;
+  width: 90%;
+
+  input {
+    width: 100%;
+  }
+}

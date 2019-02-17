@@ -1,0 +1,68 @@
+.map {
+  height: 300px;
+  width: 90%;
+  margin: auto;
+}
+.top{
+  margin-top: 10px;
+  text-align: center;
+
+  span {
+    line-height: 45px;
+    font-weight: bold;
+  }
+}
+.bottom {
+  margin-top: 15px;
+}
+.location_data .message{
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.address {
+  margin-top: 5px;
+  text-align: center;
+}
+.time {
+  margin-top: 5px;
+  text-align: center;
+}
+.response{
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+}
+.send_txt{
+  margin-top: 5px;
+  text-align: center;
+}
+.emergency{
+  margin-top: 5px;
+  text-align: center;
+}
+.emergency.txt {
+  margin-top: 20px;
+}
+.btn {
+  border-radius: 10px;
+}
+.send_txt.btn {
+  background-color: lightgreen;
+  font-size: 30px;
+
+  span{
+    line-height: 45px;
+    font-weight: bold;
+  }
+}
+.emergency.btn {
+  background-color: darkred;
+  color: white;
+  font-size: 30px;
+
+  span {
+    line-height: 45px;
+    font-weight: bold;
+  }
+}
