@@ -46,17 +46,19 @@ def get_output(lat, lon):
     res = []
     if news:
         res.append(news['title'])
-    bol = [sentiment[i][0] for i in range(len(sentiment))]
-    sent = [sentiment[i][1] for i in range(len(sentiment))]
+    bol = [sentiment[0][i] for i in range(len(sentiment))]
+    sent = [sentiment[1][i] for i in range(len(sentiment))]
     bol = np.array(bol)
     sent = np.array(sent)
     perc = np.mean(bol) # percentage of true false
 
     if perc == 0:
         return y_hat, []
-    avg_score_of_pos = np.mean(np.abs((sent[bol > 0])))
+    avg_score_of_pos = np.mean(np.abs((sent[bol > 0])))[0]
     numerator= 0.8*perc + 0.2*avg_score_of_pos
     final_danger_score = 0.6*numerator + 0.4*y_hat
-    final_danger_score = float(final_danger_score)
-    print(final_danger_score, res)
+    final_danger_score = final_danger_score[0][0]
+    print('---------')
+    print(final_danger_score)
+    print('---------')
     return final_danger_score, res

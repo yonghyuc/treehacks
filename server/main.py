@@ -89,7 +89,7 @@ def data():
 
     if not news:
         news = ['No news']
-
+        
     return jsonify({'score': score, 'address': result['formatted_address'], 'headline': news[0]}), 200, {'ContentType':'application/json'}
 
 @app.errorhandler(500)
