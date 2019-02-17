@@ -30,8 +30,10 @@ export class ReceiverComponent implements AfterViewInit {
   }
 
   setMap(location) {
+    let googleLocation = new google.maps.LatLng(location.lat, location.lng);
+
     var mapProp = {
-      center: new google.maps.LatLng(location.lat, location.lng),
+      center: googleLocation,
       zoom: 16,
       minZoom: 13,
       mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -52,16 +54,15 @@ export class ReceiverComponent implements AfterViewInit {
     });
     infowindow.open(this.map, this.marker);
 
-    this.showDangerousSpot();
+    this.showDangerousSpot(googleLocation);
   }
 
-  showDangerousSpot(){
+  showDangerousSpot(googleLocation){
     var heatmapData = [];
 
-    var latLng = new google.maps.LatLng(28.4595, 77.0266);
-    heatmapData.push(latLng);
+    heatmapData.push(googleLocation);
 
-    var heatmap = new google.maps.visualization.HeatmapLayer({
+    new google.maps.visualization.HeatmapLayer({
       map: this.map,
       data: heatmapData,
       dissipating: false,
