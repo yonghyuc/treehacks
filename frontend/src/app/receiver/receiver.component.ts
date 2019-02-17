@@ -74,6 +74,4 @@ export class ReceiverComponent implements AfterViewInit {
       console.log(item);
     });
   }
-
-
 }
