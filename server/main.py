@@ -57,7 +57,7 @@ def send_okay_sms():
     client.messages.create(
         body="I am okay. I am at " + address + " http://35.235.68.155:4200/receive",
         from_='+13233065652',
-        to='+12137099805'
+        to='+13202887535'
     )
     return "success"
 
@@ -71,7 +71,7 @@ def send_help_sms():
     client.messages.create(
         body="Help me! I am at " + address + " http://35.235.68.155:4200/receive",
         from_='+13233065652',
-        to='+12137099805'
+        to='+13202887535'
     )
     return "success"
 
