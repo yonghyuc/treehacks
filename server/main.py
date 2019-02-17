@@ -28,6 +28,24 @@ def test_sms():
 
     return "success"
 
+@app.route('/send_okay_sms')
+def send_okay_sms():
+    address = request.args.get('address', '?')
+    account_sid = 'AC93d50f665e1e52813b6dabb120b18d1c'
+    auth_token = '08f9ef50c96d92b79677915be9165c47'
+    client = Client(account_sid, auth_token)
+    client.messages.create(
+        body="I am okay. I am at " + address + " http://treehacks-mappal.appspot.com/recv",
+        from_='+13233065652',
+        to='+12137099805'
+    )
+    return "success"
+
+@app.route('/security_score')
+def security_score():
+    output = {"score": 0.6}
+    return jsonify(output)
+
 @app.errorhandler(500)
 def server_error(e):
     return """
